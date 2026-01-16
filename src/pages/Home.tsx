@@ -565,8 +565,19 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.EXPENSE_VALIDATION_COORDINATOR)
 
-      if (result.success && result.response.status === 'success') {
-        const validationData = result.response.result as ValidationResult
+      if (result.success && result.response) {
+        // Parse the nested response structure
+        let validationData: ValidationResult
+
+        if (typeof result.response.response === 'string') {
+          const parsedResponse = JSON.parse(result.response.response)
+          validationData = parsedResponse.result as ValidationResult
+        } else if (result.response.result) {
+          validationData = result.response.result as ValidationResult
+        } else {
+          throw new Error('Invalid response structure')
+        }
+
         setValidationResult(validationData)
 
         // Add to expenses list
@@ -609,8 +620,19 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.MANAGER_APPROVAL)
 
-      if (result.success && result.response.status === 'success') {
-        const approvalData = result.response.result as ApprovalResult
+      if (result.success && result.response) {
+        // Parse the nested response structure
+        let approvalData: ApprovalResult
+
+        if (typeof result.response.response === 'string') {
+          const parsedResponse = JSON.parse(result.response.response)
+          approvalData = parsedResponse.result as ApprovalResult
+        } else if (result.response.result) {
+          approvalData = result.response.result as ApprovalResult
+        } else {
+          throw new Error('Invalid response structure')
+        }
+
         setApprovalResult(approvalData)
 
         // Update expense status
