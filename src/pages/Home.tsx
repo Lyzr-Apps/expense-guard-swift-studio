@@ -226,38 +226,7 @@ const AGENT_IDS = {
 // ============================================================================
 // SAMPLE DATA
 // ============================================================================
-const initialExpenses: ExpenseRecord[] = [
-  {
-    id: 'EXP-2026-001',
-    employee: 'Sarah Chen',
-    vendor: 'Starbucks Coffee',
-    amount: 14.99,
-    date: '2026-01-14',
-    category: 'Business Meal',
-    status: 'approved',
-    riskScore: 'low'
-  },
-  {
-    id: 'EXP-2026-002',
-    employee: 'John Smith',
-    vendor: 'Italian Bistro',
-    amount: 89.50,
-    date: '2026-01-13',
-    category: 'Client Entertainment',
-    status: 'pending',
-    riskScore: 'low'
-  },
-  {
-    id: 'EXP-2026-003',
-    employee: 'Mike Johnson',
-    vendor: "Joe's Diner",
-    amount: 847.50,
-    date: '2026-01-10',
-    category: 'Business Meal',
-    status: 'reviewing',
-    riskScore: 'high'
-  }
-]
+const initialExpenses: ExpenseRecord[] = []
 
 // ============================================================================
 // UTILITY FUNCTIONS
@@ -904,14 +873,26 @@ export default function Home() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredExpenses.map(expense => (
-                    <ExpenseTableRow
-                      key={expense.id}
-                      expense={expense}
-                      onSelect={() => setSelectedExpense(expense)}
-                      isSelected={selectedExpense?.id === expense.id}
-                    />
-                  ))}
+                  {filteredExpenses.length > 0 ? (
+                    filteredExpenses.map(expense => (
+                      <ExpenseTableRow
+                        key={expense.id}
+                        expense={expense}
+                        onSelect={() => setSelectedExpense(expense)}
+                        isSelected={selectedExpense?.id === expense.id}
+                      />
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={8} className="text-center py-8 text-gray-500">
+                        <div className="flex flex-col items-center gap-2">
+                          <FileText className="h-12 w-12 text-gray-300" />
+                          <p className="text-sm">No expenses yet</p>
+                          <p className="text-xs">Submit your first expense to get started</p>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
             </ScrollArea>
@@ -1311,20 +1292,32 @@ export default function Home() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {expenses.map(expense => (
-                <TableRow key={expense.id}>
-                  <TableCell className="text-sm text-gray-600">
-                    {formatDate(expense.date)}
+              {expenses.length > 0 ? (
+                expenses.map(expense => (
+                  <TableRow key={expense.id}>
+                    <TableCell className="text-sm text-gray-600">
+                      {formatDate(expense.date)}
+                    </TableCell>
+                    <TableCell className="font-medium">{expense.id}</TableCell>
+                    <TableCell>{expense.employee}</TableCell>
+                    <TableCell>{expense.vendor}</TableCell>
+                    <TableCell>{formatCurrency(expense.amount)}</TableCell>
+                    <TableCell className="text-sm">{expense.category}</TableCell>
+                    <TableCell><StatusBadge status={expense.status} /></TableCell>
+                    <TableCell><RiskBadge risk={expense.riskScore} /></TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={8} className="text-center py-8 text-gray-500">
+                    <div className="flex flex-col items-center gap-2">
+                      <FileCheck className="h-12 w-12 text-gray-300" />
+                      <p className="text-sm">No audit records</p>
+                      <p className="text-xs">Expense transactions will appear here</p>
+                    </div>
                   </TableCell>
-                  <TableCell className="font-medium">{expense.id}</TableCell>
-                  <TableCell>{expense.employee}</TableCell>
-                  <TableCell>{expense.vendor}</TableCell>
-                  <TableCell>{formatCurrency(expense.amount)}</TableCell>
-                  <TableCell className="text-sm">{expense.category}</TableCell>
-                  <TableCell><StatusBadge status={expense.status} /></TableCell>
-                  <TableCell><RiskBadge risk={expense.riskScore} /></TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </ScrollArea>
