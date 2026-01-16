@@ -39,7 +39,7 @@ import {
   Filter,
   Download,
   ZoomIn,
-  Home,
+  Home as HomeIcon,
   ClipboardCheck,
   FileCheck,
   Loader2,
@@ -1368,7 +1368,7 @@ export default function Home() {
               )}
             >
               <div className="flex items-center gap-2">
-                <Home className="h-4 w-4" />
+                <HomeIcon className="h-4 w-4" />
                 Employee Dashboard
               </div>
             </button>
