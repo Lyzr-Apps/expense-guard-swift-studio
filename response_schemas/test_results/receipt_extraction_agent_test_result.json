@@ -1,0 +1,49 @@
+{
+  "agent_name": "Receipt Extraction Agent",
+  "agent_id": "696a2d3ea5272eccb326c62f",
+  "test_message": "Extract data from this receipt: Vendor: Starbucks Coffee, Date: January 14, 2026, Items: 2x Latte $5.50 each, 1x Croissant $3.99, Total: $14.99, Location: Downtown Seattle",
+  "expected_purpose": "vision_extraction",
+  "timestamp": "2026-01-16T12:25:30.632949",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "vendor_name": "Starbucks Coffee",
+      "transaction_date": "2026-01-14",
+      "transaction_time": null,
+      "location": "Downtown Seattle",
+      "total_amount": 14.99,
+      "currency": "USD",
+      "tax_amount": null,
+      "line_items": [
+        {
+          "item_name": "Latte",
+          "quantity": 2,
+          "unit_price": 5.5,
+          "total_price": 11.0
+        },
+        {
+          "item_name": "Croissant",
+          "quantity": 1,
+          "unit_price": 3.99,
+          "total_price": 3.99
+        }
+      ],
+      "payment_method": null,
+      "receipt_number": null,
+      "extraction_confidence": 0.9,
+      "missing_fields": [
+        "transaction_time",
+        "tax_amount",
+        "payment_method",
+        "receipt_number"
+      ]
+    },
+    "metadata": {
+      "agent_name": "Receipt Extraction Agent",
+      "timestamp": "2024-06-26T20:22:15Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"vendor_name\": \"Starbucks Coffee\",\n    \"transaction_date\": \"2026-01-14\",\n    \"transaction_time\": null,\n    \"location\": \"Downtown Seattle\",\n    \"total_amount\": 14.99,\n    \"currency\": \"USD\",\n    \"tax_amount\": null,\n    \"line_items\": [\n      {\n        \"item_name\": \"Latte\",\n        \"quantity\": 2,\n        \"unit_price\": 5.50,\n        \"total_price\": 11.00\n      },\n      {\n        \"item_name\": \"Croissant\",\n        \"quantity\": 1,\n        \"unit_price\": 3.99,\n        \"total_price\": 3.99\n      }\n    ],\n    \"payment_method\": null,\n    \"receipt_number\": null,\n    \"extraction_confidence\": 0.9,\n    \"missing_fields\": [\"transaction_time\", \"tax_amount\", \"payment_method\", \"receipt_number\"]\n  },\n  \"metadata\": {\n    \"agent_name\": \"Receipt Extraction Agent\",\n    \"timestamp\": \"2024-06-26T20:22:15Z\"\n  }\n}"
+}

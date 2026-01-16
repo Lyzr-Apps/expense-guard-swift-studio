@@ -1,0 +1,31 @@
+{
+  "agent_name": "Employee Eligibility Agent",
+  "agent_id": "696a2d85a5272eccb326c648",
+  "test_message": "Check eligibility: Employee ID: EMP-2847, Department: Engineering, Work Location: Remote, Expense Type: Home Office Equipment, Amount: $450, Item: Standing Desk",
+  "expected_purpose": "eligibility_verification",
+  "timestamp": "2026-01-16T12:25:42.443242",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "eligible": true,
+      "ineligibility_reasons": [],
+      "employee_context": {
+        "department": "Engineering",
+        "location": "Remote",
+        "travel_status": "inactive",
+        "meal_plan_enrolled": false,
+        "per_diem_active": false,
+        "job_level": "unspecified"
+      },
+      "recommendation": "approve",
+      "reasoning": "Employee is in the Engineering department, working remote, and claiming for Home Office Equipment, which is typically permitted for remote employees in this department. No conflicts found related to travel, meal plan, or per diem."
+    },
+    "metadata": {
+      "agent_name": "Employee Eligibility Agent",
+      "timestamp": "2024-06-12T13:13:10Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"eligible\": true,\n    \"ineligibility_reasons\": [],\n    \"employee_context\": {\n      \"department\": \"Engineering\",\n      \"location\": \"Remote\",\n      \"travel_status\": \"inactive\",\n      \"meal_plan_enrolled\": false,\n      \"per_diem_active\": false,\n      \"job_level\": \"unspecified\"\n    },\n    \"recommendation\": \"approve\",\n    \"reasoning\": \"Employee is in the Engineering department, working remote, and claiming for Home Office Equipment, which is typically permitted for remote employees in this department. No conflicts found related to travel, meal plan, or per diem.\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"Employee Eligibility Agent\",\n    \"timestamp\": \"2024-06-12T13:13:10Z\"\n  }\n}"
+}

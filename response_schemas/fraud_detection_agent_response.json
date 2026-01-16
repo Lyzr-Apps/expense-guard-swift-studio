@@ -1,0 +1,106 @@
+{
+  "agent_name": "Fraud Detection Agent",
+  "agent_id": "696a2d57a5272eccb326c639",
+  "agent_purpose": "analyzer",
+  "description": "Analyzes receipts for fraud indicators including manipulation, duplicates, plausibility issues",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "fraud_risk_level": "string",
+      "fraud_score": "number",
+      "flags": [
+        {
+          "category": "string",
+          "severity": "string",
+          "description": "string",
+          "evidence": "string"
+        }
+      ],
+      "duplicate_detected": "boolean",
+      "vendor_verified": "boolean",
+      "location_plausible": "boolean",
+      "recommendation": "string",
+      "reasoning": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "fraud_risk_level": "high",
+      "fraud_score": 0.8,
+      "flags": [
+        {
+          "category": "image_manipulation",
+          "severity": "medium",
+          "description": "Mixed fonts detected in the receipt image.",
+          "evidence": "Font consistency is not uniform, indicating potential manipulation."
+        },
+        {
+          "category": "plausibility",
+          "severity": "high",
+          "description": "Submission date is after the receipt date.",
+          "evidence": "Receipt dated January 10, 2026, submitted on January 15, 2026."
+        },
+        {
+          "category": "amount_anomaly",
+          "severity": "medium",
+          "description": "Unusual amount detected.",
+          "evidence": "The amount of $847.50 is unusually high for a typical diner receipt."
+        }
+      ],
+      "duplicate_detected": false,
+      "vendor_verified": false,
+      "location_plausible": false,
+      "recommendation": "reject",
+      "reasoning": "The receipt shows signs of image manipulation, has an implausible submission date relative to the receipt date, and presents an unusual amount."
+    },
+    "metadata": {
+      "agent_name": "Fraud Detection Agent",
+      "timestamp": "2023-10-04T12:00:00Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-16T12:25:36.205979",
+  "test_message_used": "Analyze this sample data for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "fraud_risk_level": "high",
+      "fraud_score": 0.8,
+      "flags": [
+        {
+          "category": "image_manipulation",
+          "severity": "medium",
+          "description": "Mixed fonts detected in the receipt image.",
+          "evidence": "Font consistency is not uniform, indicating potential manipulation."
+        },
+        {
+          "category": "plausibility",
+          "severity": "high",
+          "description": "Submission date is after the receipt date.",
+          "evidence": "Receipt dated January 10, 2026, submitted on January 15, 2026."
+        },
+        {
+          "category": "amount_anomaly",
+          "severity": "medium",
+          "description": "Unusual amount detected.",
+          "evidence": "The amount of $847.50 is unusually high for a typical diner receipt."
+        }
+      ],
+      "duplicate_detected": false,
+      "vendor_verified": false,
+      "location_plausible": false,
+      "recommendation": "reject",
+      "reasoning": "The receipt shows signs of image manipulation, has an implausible submission date relative to the receipt date, and presents an unusual amount."
+    },
+    "metadata": {
+      "agent_name": "Fraud Detection Agent",
+      "timestamp": "2023-10-04T12:00:00Z"
+    }
+  },
+  "test_passed": true
+}

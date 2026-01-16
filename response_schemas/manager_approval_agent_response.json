@@ -1,0 +1,128 @@
+{
+  "agent_name": "Manager Approval Agent",
+  "agent_id": "696a2dc7a5272eccb326c66b",
+  "agent_purpose": "custom",
+  "description": "Processes manager approval/rejection decisions, triggers reimbursement workflows, creates audit records",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "decision_processed": "boolean",
+      "expense_status": "string",
+      "decision_details": {
+        "manager_id": "string",
+        "decision": "string",
+        "rationale": "string",
+        "decision_timestamp": "string"
+      },
+      "workflow_actions": {
+        "reimbursement_triggered": "boolean",
+        "employee_notified": "boolean",
+        "audit_record_created": "boolean",
+        "finance_team_notified": "boolean"
+      },
+      "reimbursement_details": {
+        "amount": "number",
+        "currency": "string",
+        "payment_method": "string",
+        "expected_processing_days": "number",
+        "reference_number": "string"
+      },
+      "next_steps": [
+        "string"
+      ],
+      "audit_trail": {
+        "record_id": "string",
+        "timestamp": "string",
+        "action": "string"
+      }
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "decision_processed": true,
+      "expense_status": "approved",
+      "decision_details": {
+        "manager_id": "unknown",
+        "decision": "approve",
+        "rationale": "Valid client dinner expense with all required documentation, approved within policy limits.",
+        "decision_timestamp": "2024-06-13T12:30:45Z"
+      },
+      "workflow_actions": {
+        "reimbursement_triggered": true,
+        "employee_notified": true,
+        "audit_record_created": true,
+        "finance_team_notified": true
+      },
+      "reimbursement_details": {
+        "amount": 215.75,
+        "currency": "USD",
+        "payment_method": "Direct Deposit",
+        "expected_processing_days": 5,
+        "reference_number": "RB-EXP-2026-00142"
+      },
+      "next_steps": [
+        "Finance team will process reimbursement within 5 business days.",
+        "Employee will receive notification of payment once processed.",
+        "Audit log updated for compliance."
+      ],
+      "audit_trail": {
+        "record_id": "AUD-EXP-2026-00142",
+        "timestamp": "2024-06-13T12:30:45Z",
+        "action": "Manager approved expense and triggered reimbursement workflow."
+      }
+    },
+    "metadata": {
+      "agent_name": "Manager Approval Agent",
+      "timestamp": "2024-06-13T12:30:45Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-16T12:26:20.183306",
+  "test_message_used": "Provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "decision_processed": true,
+      "expense_status": "approved",
+      "decision_details": {
+        "manager_id": "unknown",
+        "decision": "approve",
+        "rationale": "Valid client dinner expense with all required documentation, approved within policy limits.",
+        "decision_timestamp": "2024-06-13T12:30:45Z"
+      },
+      "workflow_actions": {
+        "reimbursement_triggered": true,
+        "employee_notified": true,
+        "audit_record_created": true,
+        "finance_team_notified": true
+      },
+      "reimbursement_details": {
+        "amount": 215.75,
+        "currency": "USD",
+        "payment_method": "Direct Deposit",
+        "expected_processing_days": 5,
+        "reference_number": "RB-EXP-2026-00142"
+      },
+      "next_steps": [
+        "Finance team will process reimbursement within 5 business days.",
+        "Employee will receive notification of payment once processed.",
+        "Audit log updated for compliance."
+      ],
+      "audit_trail": {
+        "record_id": "AUD-EXP-2026-00142",
+        "timestamp": "2024-06-13T12:30:45Z",
+        "action": "Manager approved expense and triggered reimbursement workflow."
+      }
+    },
+    "metadata": {
+      "agent_name": "Manager Approval Agent",
+      "timestamp": "2024-06-13T12:30:45Z"
+    }
+  },
+  "test_passed": true
+}

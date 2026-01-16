@@ -1,0 +1,40 @@
+{
+  "agent_name": "Policy Compliance Agent",
+  "agent_id": "696a2d6d9ea90559bbf3e8e7",
+  "test_message": "Validate expense: Category: Business Meal, Amount: $125.00, Attendees: 3 people, Documentation: Receipt + Meeting notes attached, Date: January 12, 2026",
+  "expected_purpose": "policy_validation",
+  "timestamp": "2026-01-16T12:25:40.139946",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "compliant": false,
+      "violations": [
+        {
+          "policy_rule": "Expenses must be submitted within 60 days of transaction date.",
+          "violation_type": "late_submission",
+          "severity": "critical",
+          "description": "Expense transaction dated January 12, 2026 is outside the allowed timeframe for submission.",
+          "policy_reference": "Section 4.2: Timeliness of Expense Submission"
+        }
+      ],
+      "category_limit": {
+        "limit": 150,
+        "actual": 125,
+        "within_limit": true
+      },
+      "required_approvals": [
+        "Manager"
+      ],
+      "missing_documents": [],
+      "recommendation": "reject",
+      "reasoning": "The expense submission violates company policy due to late submission outside of the allowed timeframe, despite being within the category limit and having all required documentation."
+    },
+    "metadata": {
+      "agent_name": "Policy Compliance Agent",
+      "timestamp": "2024-06-12T14:31:00Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"compliant\": false,\n    \"violations\": [\n      {\n        \"policy_rule\": \"Expenses must be submitted within 60 days of transaction date.\",\n        \"violation_type\": \"late_submission\",\n        \"severity\": \"critical\",\n        \"description\": \"Expense transaction dated January 12, 2026 is outside the allowed timeframe for submission.\",\n        \"policy_reference\": \"Section 4.2: Timeliness of Expense Submission\"\n      }\n    ],\n    \"category_limit\": {\n      \"limit\": 150,\n      \"actual\": 125,\n      \"within_limit\": true\n    },\n    \"required_approvals\": [\n      \"Manager\"\n    ],\n    \"missing_documents\": [],\n    \"recommendation\": \"reject\",\n    \"reasoning\": \"The expense submission violates company policy due to late submission outside of the allowed timeframe, despite being within the category limit and having all required documentation.\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"Policy Compliance Agent\",\n    \"timestamp\": \"2024-06-12T14:31:00Z\"\n  }\n}"
+}

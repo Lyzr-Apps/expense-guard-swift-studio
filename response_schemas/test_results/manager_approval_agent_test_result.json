@@ -1,0 +1,50 @@
+{
+  "agent_name": "Manager Approval Agent",
+  "agent_id": "696a2dc7a5272eccb326c66b",
+  "test_message": "Process approval decision: Expense ID: EXP-2026-00142, Employee: John Smith, Amount: $215.75, Manager Decision: APPROVED, Rationale: Valid client dinner expense with all required documentation, approved within policy limits.",
+  "expected_purpose": "approval_processing",
+  "timestamp": "2026-01-16T12:26:20.182192",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "decision_processed": true,
+      "expense_status": "approved",
+      "decision_details": {
+        "manager_id": "unknown",
+        "decision": "approve",
+        "rationale": "Valid client dinner expense with all required documentation, approved within policy limits.",
+        "decision_timestamp": "2024-06-13T12:30:45Z"
+      },
+      "workflow_actions": {
+        "reimbursement_triggered": true,
+        "employee_notified": true,
+        "audit_record_created": true,
+        "finance_team_notified": true
+      },
+      "reimbursement_details": {
+        "amount": 215.75,
+        "currency": "USD",
+        "payment_method": "Direct Deposit",
+        "expected_processing_days": 5,
+        "reference_number": "RB-EXP-2026-00142"
+      },
+      "next_steps": [
+        "Finance team will process reimbursement within 5 business days.",
+        "Employee will receive notification of payment once processed.",
+        "Audit log updated for compliance."
+      ],
+      "audit_trail": {
+        "record_id": "AUD-EXP-2026-00142",
+        "timestamp": "2024-06-13T12:30:45Z",
+        "action": "Manager approved expense and triggered reimbursement workflow."
+      }
+    },
+    "metadata": {
+      "agent_name": "Manager Approval Agent",
+      "timestamp": "2024-06-13T12:30:45Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"decision_processed\": true,\n    \"expense_status\": \"approved\",\n    \"decision_details\": {\n      \"manager_id\": \"unknown\",\n      \"decision\": \"approve\",\n      \"rationale\": \"Valid client dinner expense with all required documentation, approved within policy limits.\",\n      \"decision_timestamp\": \"2024-06-13T12:30:45Z\"\n    },\n    \"workflow_actions\": {\n      \"reimbursement_triggered\": true,\n      \"employee_notified\": true,\n      \"audit_record_created\": true,\n      \"finance_team_notified\": true\n    },\n    \"reimbursement_details\": {\n      \"amount\": 215.75,\n      \"currency\": \"USD\",\n      \"payment_method\": \"Direct Deposit\",\n      \"expected_processing_days\": 5,\n      \"reference_number\": \"RB-EXP-2026-00142\"\n    },\n    \"next_steps\": [\n      \"Finance team will process reimbursement within 5 business days.\",\n      \"Employee will receive notification of payment once processed.\",\n      \"Audit log updated for compliance.\"\n    ],\n    \"audit_trail\": {\n      \"record_id\": \"AUD-EXP-2026-00142\",\n      \"timestamp\": \"2024-06-13T12:30:45Z\",\n      \"action\": \"Manager approved expense and triggered reimbursement workflow.\"\n    }\n  },\n  \"metadata\": {\n    \"agent_name\": \"Manager Approval Agent\",\n    \"timestamp\": \"2024-06-13T12:30:45Z\"\n  }\n}"
+}

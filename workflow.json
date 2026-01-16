@@ -1,0 +1,210 @@
+{
+  "workflow_name": "Expense Management Automation Platform",
+  "workflow_type": "manager_subagent_hybrid",
+  "nodes": [
+    {
+      "id": "expense_input",
+      "type": "Input",
+      "label": "Employee Expense Submission",
+      "nodeCategory": "input",
+      "position": { "x": 100, "y": 200 }
+    },
+    {
+      "id": "expense_manager",
+      "type": "Agent",
+      "label": "Expense Validation Coordinator",
+      "nodeCategory": "agent",
+      "agent_id": "696a2da7a5272eccb326c65d",
+      "agent_type": "manager",
+      "position": { "x": 400, "y": 200 }
+    },
+    {
+      "id": "receipt_extractor",
+      "type": "Agent",
+      "label": "Receipt Extraction Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696a2d3ea5272eccb326c62f",
+      "agent_type": "sub_agent",
+      "position": { "x": 700, "y": 50 }
+    },
+    {
+      "id": "fraud_detector",
+      "type": "Agent",
+      "label": "Fraud Detection Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696a2d57a5272eccb326c639",
+      "agent_type": "sub_agent",
+      "position": { "x": 700, "y": 150 }
+    },
+    {
+      "id": "policy_checker",
+      "type": "Agent",
+      "label": "Policy Compliance Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696a2d6d9ea90559bbf3e8e7",
+      "agent_type": "sub_agent",
+      "position": { "x": 700, "y": 250 }
+    },
+    {
+      "id": "eligibility_checker",
+      "type": "Agent",
+      "label": "Employee Eligibility Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696a2d85a5272eccb326c648",
+      "agent_type": "sub_agent",
+      "position": { "x": 700, "y": 350 }
+    },
+    {
+      "id": "validation_output",
+      "type": "Output",
+      "label": "Validation Report",
+      "nodeCategory": "end",
+      "position": { "x": 1000, "y": 200 }
+    },
+    {
+      "id": "manager_input",
+      "type": "Input",
+      "label": "Manager Review Action",
+      "nodeCategory": "input",
+      "position": { "x": 100, "y": 500 }
+    },
+    {
+      "id": "approval_agent",
+      "type": "Agent",
+      "label": "Manager Approval Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696a2dc7a5272eccb326c66b",
+      "agent_type": "independent",
+      "position": { "x": 400, "y": 500 }
+    },
+    {
+      "id": "approval_output",
+      "type": "Output",
+      "label": "Approval Decision",
+      "nodeCategory": "end",
+      "position": { "x": 700, "y": 500 }
+    }
+  ],
+  "edges": [
+    {
+      "source": "expense_input",
+      "target": "expense_manager",
+      "label": "Submit Expense"
+    },
+    {
+      "source": "expense_manager",
+      "target": "receipt_extractor",
+      "label": "Extract Data"
+    },
+    {
+      "source": "expense_manager",
+      "target": "fraud_detector",
+      "label": "Check Fraud"
+    },
+    {
+      "source": "expense_manager",
+      "target": "policy_checker",
+      "label": "Validate Policy"
+    },
+    {
+      "source": "expense_manager",
+      "target": "eligibility_checker",
+      "label": "Check Eligibility"
+    },
+    {
+      "source": "expense_manager",
+      "target": "validation_output",
+      "label": "Aggregated Report"
+    },
+    {
+      "source": "manager_input",
+      "target": "approval_agent",
+      "label": "Approve/Reject"
+    },
+    {
+      "source": "approval_agent",
+      "target": "approval_output",
+      "label": "Decision Processed"
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "696a2da7a5272eccb326c65d",
+      "name": "Expense Validation Coordinator",
+      "type": "manager",
+      "description": "Orchestrates the complete expense validation workflow, routes receipt data to specialized sub-agents, aggregates findings into unified validation report with approval recommendation",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "trigger": "Submit Expense on Employee Dashboard",
+      "managed_agents": [
+        "696a2d3ea5272eccb326c62f",
+        "696a2d57a5272eccb326c639",
+        "696a2d6d9ea90559bbf3e8e7",
+        "696a2d85a5272eccb326c648"
+      ]
+    },
+    {
+      "agent_id": "696a2d3ea5272eccb326c62f",
+      "name": "Receipt Extraction Agent",
+      "type": "sub_agent",
+      "description": "Extracts structured data from receipt images including vendor name, date, time, location, amount, currency, and line items using vision capabilities",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "trigger": "Auto (via Manager)",
+      "parent_agent": "696a2da7a5272eccb326c65d"
+    },
+    {
+      "agent_id": "696a2d57a5272eccb326c639",
+      "name": "Fraud Detection Agent",
+      "type": "sub_agent",
+      "description": "Analyzes receipt images for signs of falsification including image manipulation, duplicate submissions, inconsistent fonts/formatting, and cross-references date/location plausibility",
+      "provider": "Perplexity",
+      "model": "sonar-pro",
+      "temperature": 0.2,
+      "top_p": 1,
+      "trigger": "Auto (via Manager)",
+      "parent_agent": "696a2da7a5272eccb326c65d"
+    },
+    {
+      "agent_id": "696a2d6d9ea90559bbf3e8e7",
+      "name": "Policy Compliance Agent",
+      "type": "sub_agent",
+      "description": "Validates expense against internal policy documents checking category limits, eligible expense types, required documentation, and approval thresholds per expense category",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "trigger": "Auto (via Manager)",
+      "parent_agent": "696a2da7a5272eccb326c65d"
+    },
+    {
+      "agent_id": "696a2d85a5272eccb326c648",
+      "name": "Employee Eligibility Agent",
+      "type": "sub_agent",
+      "description": "Verifies employee eligibility for specific expense types based on work location, department, travel status, staff restaurant access, and perdiem allowances",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "trigger": "Auto (via Manager)",
+      "parent_agent": "696a2da7a5272eccb326c65d"
+    },
+    {
+      "agent_id": "696a2dc7a5272eccb326c66b",
+      "name": "Manager Approval Agent",
+      "type": "independent",
+      "description": "Processes manager's approval/rejection decision, records rationale, updates expense status, triggers reimbursement workflow for approved expenses, and creates complete audit record",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "trigger": "Approve/Reject on Manager Review Screen"
+    }
+  ],
+  "created_at": "2026-01-16T00:00:00Z",
+  "updated_at": "2026-01-16T00:00:00Z"
+}

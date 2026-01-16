@@ -1,0 +1,118 @@
+{
+  "agent_name": "Receipt Extraction Agent",
+  "agent_id": "696a2d3ea5272eccb326c62f",
+  "agent_purpose": "parser",
+  "description": "Extracts structured receipt data including vendor, date, amount, line items from receipt images",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "vendor_name": "string",
+      "transaction_date": "string",
+      "transaction_time": "null",
+      "location": "string",
+      "total_amount": "number",
+      "currency": "string",
+      "tax_amount": "null",
+      "line_items": [
+        {
+          "item_name": "string",
+          "quantity": "number",
+          "unit_price": "number",
+          "total_price": "number"
+        }
+      ],
+      "payment_method": "null",
+      "receipt_number": "null",
+      "extraction_confidence": "number",
+      "missing_fields": [
+        "string"
+      ]
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "vendor_name": "Starbucks Coffee",
+      "transaction_date": "2026-01-14",
+      "transaction_time": null,
+      "location": "Downtown Seattle",
+      "total_amount": 14.99,
+      "currency": "USD",
+      "tax_amount": null,
+      "line_items": [
+        {
+          "item_name": "Latte",
+          "quantity": 2,
+          "unit_price": 5.5,
+          "total_price": 11.0
+        },
+        {
+          "item_name": "Croissant",
+          "quantity": 1,
+          "unit_price": 3.99,
+          "total_price": 3.99
+        }
+      ],
+      "payment_method": null,
+      "receipt_number": null,
+      "extraction_confidence": 0.9,
+      "missing_fields": [
+        "transaction_time",
+        "tax_amount",
+        "payment_method",
+        "receipt_number"
+      ]
+    },
+    "metadata": {
+      "agent_name": "Receipt Extraction Agent",
+      "timestamp": "2024-06-26T20:22:15Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-16T12:25:30.645871",
+  "test_message_used": "Parse this sample text for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "vendor_name": "Starbucks Coffee",
+      "transaction_date": "2026-01-14",
+      "transaction_time": null,
+      "location": "Downtown Seattle",
+      "total_amount": 14.99,
+      "currency": "USD",
+      "tax_amount": null,
+      "line_items": [
+        {
+          "item_name": "Latte",
+          "quantity": 2,
+          "unit_price": 5.5,
+          "total_price": 11.0
+        },
+        {
+          "item_name": "Croissant",
+          "quantity": 1,
+          "unit_price": 3.99,
+          "total_price": 3.99
+        }
+      ],
+      "payment_method": null,
+      "receipt_number": null,
+      "extraction_confidence": 0.9,
+      "missing_fields": [
+        "transaction_time",
+        "tax_amount",
+        "payment_method",
+        "receipt_number"
+      ]
+    },
+    "metadata": {
+      "agent_name": "Receipt Extraction Agent",
+      "timestamp": "2024-06-26T20:22:15Z"
+    }
+  },
+  "test_passed": true
+}

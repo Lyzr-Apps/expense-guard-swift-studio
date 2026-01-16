@@ -1,0 +1,62 @@
+{
+  "agent_name": "Expense Validation Coordinator",
+  "agent_id": "696a2da7a5272eccb326c65d",
+  "test_message": "Validate complete expense: Receipt shows $89.50 lunch at Italian Bistro on January 13, 2026. Employee Sarah Chen (Marketing, San Francisco office) submitted for client meeting. Has receipt image and attendee list.",
+  "expected_purpose": "manager_coordinator",
+  "timestamp": "2026-01-16T12:26:13.817544",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "validation_summary": {
+        "overall_status": "rejected",
+        "confidence_score": 0.3,
+        "risk_level": "critical"
+      },
+      "receipt_data": {
+        "vendor": "Italian Bistro",
+        "amount": 89.5,
+        "date": "2026-01-13",
+        "extracted_successfully": true
+      },
+      "fraud_analysis": {
+        "fraud_detected": true,
+        "fraud_score": 0.9,
+        "flags_count": 3
+      },
+      "policy_compliance": {
+        "compliant": true,
+        "violations_count": 0,
+        "critical_violations": false
+      },
+      "employee_eligibility": {
+        "eligible": true,
+        "restrictions": 0
+      },
+      "final_recommendation": "reject",
+      "recommendation_reasoning": "Despite meeting policy compliance and eligibility criteria, the expense is flagged as high risk and implausible by the Fraud Detection Agent due to an expense date in the future (January 13, 2026), an unusual amount for lunch, and unresolved vendor legitimacy concerns. These critical fraud signals override other approvals.",
+      "required_actions": [
+        "Verify the actual transaction date on the receipt.",
+        "Confirm the existence and operational status of the specified vendor.",
+        "Clarify the reason for submission with a future transaction date."
+      ],
+      "approval_workflow": {
+        "requires_manager_approval": false,
+        "required_approval_level": "none (rejected)",
+        "auto_approvable": false
+      }
+    },
+    "metadata": {
+      "agent_name": "Expense Validation Coordinator",
+      "timestamp": "2024-06-13T23:25:22Z",
+      "sub_agents_consulted": [
+        "Receipt Extraction Agent",
+        "Fraud Detection Agent",
+        "Policy Compliance Agent",
+        "Employee Eligibility Agent"
+      ]
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"validation_summary\": {\n      \"overall_status\": \"rejected\",\n      \"confidence_score\": 0.3,\n      \"risk_level\": \"critical\"\n    },\n    \"receipt_data\": {\n      \"vendor\": \"Italian Bistro\",\n      \"amount\": 89.50,\n      \"date\": \"2026-01-13\",\n      \"extracted_successfully\": true\n    },\n    \"fraud_analysis\": {\n      \"fraud_detected\": true,\n      \"fraud_score\": 0.9,\n      \"flags_count\": 3\n    },\n    \"policy_compliance\": {\n      \"compliant\": true,\n      \"violations_count\": 0,\n      \"critical_violations\": false\n    },\n    \"employee_eligibility\": {\n      \"eligible\": true,\n      \"restrictions\": 0\n    },\n    \"final_recommendation\": \"reject\",\n    \"recommendation_reasoning\": \"Despite meeting policy compliance and eligibility criteria, the expense is flagged as high risk and implausible by the Fraud Detection Agent due to an expense date in the future (January 13, 2026), an unusual amount for lunch, and unresolved vendor legitimacy concerns. These critical fraud signals override other approvals.\",\n    \"required_actions\": [\n      \"Verify the actual transaction date on the receipt.\",\n      \"Confirm the existence and operational status of the specified vendor.\",\n      \"Clarify the reason for submission with a future transaction date.\"\n    ],\n    \"approval_workflow\": {\n      \"requires_manager_approval\": false,\n      \"required_approval_level\": \"none (rejected)\",\n      \"auto_approvable\": false\n    }\n  },\n  \"metadata\": {\n    \"agent_name\": \"Expense Validation Coordinator\",\n    \"timestamp\": \"2024-06-13T23:25:22Z\",\n    \"sub_agents_consulted\": [\n      \"Receipt Extraction Agent\",\n      \"Fraud Detection Agent\",\n      \"Policy Compliance Agent\",\n      \"Employee Eligibility Agent\"\n    ]\n  }\n}"
+}

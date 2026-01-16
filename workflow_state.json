@@ -1,0 +1,56 @@
+{
+  "workflow_created": true,
+  "workflow_type": "manager_subagent_hybrid",
+  "agents": {
+    "manager_agent": {
+      "name": "Expense Validation Coordinator",
+      "agent_id": "696a2da7a5272eccb326c65d",
+      "type": "manager",
+      "status": "created",
+      "sub_agents": [
+        {
+          "name": "Receipt Extraction Agent",
+          "agent_id": "696a2d3ea5272eccb326c62f",
+          "type": "sub_agent",
+          "status": "created"
+        },
+        {
+          "name": "Fraud Detection Agent",
+          "agent_id": "696a2d57a5272eccb326c639",
+          "type": "sub_agent",
+          "status": "created"
+        },
+        {
+          "name": "Policy Compliance Agent",
+          "agent_id": "696a2d6d9ea90559bbf3e8e7",
+          "type": "sub_agent",
+          "status": "created"
+        },
+        {
+          "name": "Employee Eligibility Agent",
+          "agent_id": "696a2d85a5272eccb326c648",
+          "type": "sub_agent",
+          "status": "created"
+        }
+      ]
+    },
+    "independent_agents": [
+      {
+        "name": "Manager Approval Agent",
+        "agent_id": "696a2dc7a5272eccb326c66b",
+        "type": "independent",
+        "status": "created"
+      }
+    ]
+  },
+  "response_schemas_created": [
+    "receipt_extraction_agent_response.json",
+    "fraud_detection_agent_response.json",
+    "policy_compliance_agent_response.json",
+    "employee_eligibility_agent_response.json",
+    "expense_validation_coordinator_response.json",
+    "manager_approval_agent_response.json"
+  ],
+  "total_agents": 6,
+  "creation_timestamp": "2026-01-16T00:00:00Z"
+}

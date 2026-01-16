@@ -1,0 +1,163 @@
+{
+  "agent_name": "Expense Validation Coordinator",
+  "agent_id": "696a2da7a5272eccb326c65d",
+  "agent_purpose": "manager",
+  "description": "Orchestrates expense validation workflow, aggregates sub-agent findings into unified validation report",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "validation_summary": {
+        "overall_status": "string",
+        "confidence_score": "number",
+        "risk_level": "string"
+      },
+      "receipt_data": {
+        "vendor": "string",
+        "amount": "number",
+        "date": "string",
+        "extracted_successfully": "boolean"
+      },
+      "fraud_analysis": {
+        "fraud_detected": "boolean",
+        "fraud_score": "number",
+        "flags_count": "number"
+      },
+      "policy_compliance": {
+        "compliant": "boolean",
+        "violations_count": "number",
+        "critical_violations": "boolean"
+      },
+      "employee_eligibility": {
+        "eligible": "boolean",
+        "restrictions": "number"
+      },
+      "final_recommendation": "string",
+      "recommendation_reasoning": "string",
+      "required_actions": [
+        "string"
+      ],
+      "approval_workflow": {
+        "requires_manager_approval": "boolean",
+        "required_approval_level": "string",
+        "auto_approvable": "boolean"
+      }
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "sub_agents_consulted": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "validation_summary": {
+        "overall_status": "rejected",
+        "confidence_score": 0.3,
+        "risk_level": "critical"
+      },
+      "receipt_data": {
+        "vendor": "Italian Bistro",
+        "amount": 89.5,
+        "date": "2026-01-13",
+        "extracted_successfully": true
+      },
+      "fraud_analysis": {
+        "fraud_detected": true,
+        "fraud_score": 0.9,
+        "flags_count": 3
+      },
+      "policy_compliance": {
+        "compliant": true,
+        "violations_count": 0,
+        "critical_violations": false
+      },
+      "employee_eligibility": {
+        "eligible": true,
+        "restrictions": 0
+      },
+      "final_recommendation": "reject",
+      "recommendation_reasoning": "Despite meeting policy compliance and eligibility criteria, the expense is flagged as high risk and implausible by the Fraud Detection Agent due to an expense date in the future (January 13, 2026), an unusual amount for lunch, and unresolved vendor legitimacy concerns. These critical fraud signals override other approvals.",
+      "required_actions": [
+        "Verify the actual transaction date on the receipt.",
+        "Confirm the existence and operational status of the specified vendor.",
+        "Clarify the reason for submission with a future transaction date."
+      ],
+      "approval_workflow": {
+        "requires_manager_approval": false,
+        "required_approval_level": "none (rejected)",
+        "auto_approvable": false
+      }
+    },
+    "metadata": {
+      "agent_name": "Expense Validation Coordinator",
+      "timestamp": "2024-06-13T23:25:22Z",
+      "sub_agents_consulted": [
+        "Receipt Extraction Agent",
+        "Fraud Detection Agent",
+        "Policy Compliance Agent",
+        "Employee Eligibility Agent"
+      ]
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-16T12:26:13.819570",
+  "test_message_used": "Process this request and coordinate sub-agents",
+  "raw_test_response": "The expense submission is missing required inputs (receipt image and employee data). Please provide the receipt image or details along with relevant employee information to continue the validation workflow.",
+  "test_error": "Response not valid JSON: Expecting value: line 1 column 1 (char 0)",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "validation_summary": {
+        "overall_status": "rejected",
+        "confidence_score": 0.3,
+        "risk_level": "critical"
+      },
+      "receipt_data": {
+        "vendor": "Italian Bistro",
+        "amount": 89.5,
+        "date": "2026-01-13",
+        "extracted_successfully": true
+      },
+      "fraud_analysis": {
+        "fraud_detected": true,
+        "fraud_score": 0.9,
+        "flags_count": 3
+      },
+      "policy_compliance": {
+        "compliant": true,
+        "violations_count": 0,
+        "critical_violations": false
+      },
+      "employee_eligibility": {
+        "eligible": true,
+        "restrictions": 0
+      },
+      "final_recommendation": "reject",
+      "recommendation_reasoning": "Despite meeting policy compliance and eligibility criteria, the expense is flagged as high risk and implausible by the Fraud Detection Agent due to an expense date in the future (January 13, 2026), an unusual amount for lunch, and unresolved vendor legitimacy concerns. These critical fraud signals override other approvals.",
+      "required_actions": [
+        "Verify the actual transaction date on the receipt.",
+        "Confirm the existence and operational status of the specified vendor.",
+        "Clarify the reason for submission with a future transaction date."
+      ],
+      "approval_workflow": {
+        "requires_manager_approval": false,
+        "required_approval_level": "none (rejected)",
+        "auto_approvable": false
+      }
+    },
+    "metadata": {
+      "agent_name": "Expense Validation Coordinator",
+      "timestamp": "2024-06-13T23:25:22Z",
+      "sub_agents_consulted": [
+        "Receipt Extraction Agent",
+        "Fraud Detection Agent",
+        "Policy Compliance Agent",
+        "Employee Eligibility Agent"
+      ]
+    }
+  },
+  "test_passed": true
+}

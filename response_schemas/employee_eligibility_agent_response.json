@@ -1,0 +1,75 @@
+{
+  "agent_name": "Employee Eligibility Agent",
+  "agent_id": "696a2d85a5272eccb326c648",
+  "agent_purpose": "analyzer",
+  "description": "Validates employee eligibility for expense types based on location, department, travel status, meal plans, per diem",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "eligible": "boolean",
+      "ineligibility_reasons": [
+        "any"
+      ],
+      "employee_context": {
+        "department": "string",
+        "location": "string",
+        "travel_status": "string",
+        "meal_plan_enrolled": "boolean",
+        "per_diem_active": "boolean",
+        "job_level": "string"
+      },
+      "recommendation": "string",
+      "reasoning": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "eligible": true,
+      "ineligibility_reasons": [],
+      "employee_context": {
+        "department": "Engineering",
+        "location": "Remote",
+        "travel_status": "inactive",
+        "meal_plan_enrolled": false,
+        "per_diem_active": false,
+        "job_level": "unspecified"
+      },
+      "recommendation": "approve",
+      "reasoning": "Employee is in the Engineering department, working remote, and claiming for Home Office Equipment, which is typically permitted for remote employees in this department. No conflicts found related to travel, meal plan, or per diem."
+    },
+    "metadata": {
+      "agent_name": "Employee Eligibility Agent",
+      "timestamp": "2024-06-12T13:13:10Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-16T12:25:42.444177",
+  "test_message_used": "Analyze this sample data for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "eligible": true,
+      "ineligibility_reasons": [],
+      "employee_context": {
+        "department": "Engineering",
+        "location": "Remote",
+        "travel_status": "inactive",
+        "meal_plan_enrolled": false,
+        "per_diem_active": false,
+        "job_level": "unspecified"
+      },
+      "recommendation": "approve",
+      "reasoning": "Employee is in the Engineering department, working remote, and claiming for Home Office Equipment, which is typically permitted for remote employees in this department. No conflicts found related to travel, meal plan, or per diem."
+    },
+    "metadata": {
+      "agent_name": "Employee Eligibility Agent",
+      "timestamp": "2024-06-12T13:13:10Z"
+    }
+  },
+  "test_passed": true
+}
