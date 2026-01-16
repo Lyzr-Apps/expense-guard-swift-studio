@@ -345,7 +345,7 @@ function FileUploadZone({
     e.preventDefault()
     setIsDragging(false)
     const file = e.dataTransfer.files[0]
-    if (file && file.type.startsWith('image/')) {
+    if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
       onFileSelect(file)
     }
   }, [onFileSelect])
@@ -369,8 +369,15 @@ function FileUploadZone({
     >
       {preview ? (
         <div className="space-y-2">
-          <img src={preview} alt="Receipt preview" className="max-h-48 mx-auto rounded" />
-          <p className="text-sm text-gray-500">Receipt uploaded</p>
+          {preview.startsWith('data:application/pdf') ? (
+            <div className="flex flex-col items-center gap-2">
+              <FileText className="h-16 w-16 text-red-600" />
+              <p className="text-sm font-medium text-gray-700">PDF Receipt Uploaded</p>
+            </div>
+          ) : (
+            <img src={preview} alt="Receipt preview" className="max-h-48 mx-auto rounded" />
+          )}
+          <p className="text-sm text-gray-500">Receipt uploaded successfully</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -382,13 +389,13 @@ function FileUploadZone({
                 id="file-upload"
                 type="file"
                 className="hidden"
-                accept="image/*"
+                accept="image/*,application/pdf"
                 onChange={handleFileInput}
               />
             </label>
             <span className="text-gray-600"> or drag and drop</span>
           </div>
-          <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+          <p className="text-xs text-gray-500">PDF, PNG, JPG, GIF up to 10MB</p>
         </div>
       )}
     </div>
@@ -684,7 +691,7 @@ export default function Home() {
           <CardContent className="space-y-4">
             {/* File Upload */}
             <div>
-              <Label>Receipt Image</Label>
+              <Label>Receipt Document</Label>
               <FileUploadZone
                 onFileSelect={handleFileSelect}
                 preview={receiptPreview}
